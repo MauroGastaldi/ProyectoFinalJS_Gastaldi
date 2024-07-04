@@ -91,7 +91,7 @@ function calcularPrecio(productoSeleccionado, cuponDescuento) {
     return precio;
 }
 
-
+let precio
 
 
 
