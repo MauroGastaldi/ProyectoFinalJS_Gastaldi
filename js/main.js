@@ -7,7 +7,6 @@ console.log(ingreseLocalidad);
 console.log(cuponDescuento);
 
 
-//-----------------OBJETOS 
 class Producto {
     constructor(nombre, precio) {
         this.nombre = nombre;
@@ -16,35 +15,45 @@ class Producto {
     sumarIva() {
         this.precio = this.precio * 1.21;
     }
-
 }
-const lampara1 = new Producto("Lampara1", 50000);
-const lampara2 = new Producto("Lampara2", 55000);
-const maceta1 = new Producto("maceta1", 20000);
-const maceta2 = new Producto("maceta2", 18000);
 
 
 //-----------------ARRAYS
-const Lamparas = [lampara1, lampara2];
-const Macetas = [maceta1, maceta2];
-const arrayProductos = Lamparas.concat(Macetas);
-console.log(arrayProductos.join("\n")); 
+const productos = [];
+productos.push(new Producto("Lampara1", 30000));
+productos.push(new Producto("Lampara2", 35000));
+productos.push(new Producto("Maceta1", 15000));
+productos.push(new Producto("Maceta2", 10000));
 
-for (const producto of arrayProductos)
+
+const arrayProductos = productos.slice();
+
+for (const producto of arrayProductos) {
     producto.sumarIva();
+}
 
+ arrayProductos.forEach((producto) => {
+        producto.precio *= 1.25;
+        console.log(producto.nombre + " $" + producto.precio);
+    });
 
+ const baratos = productos.filter((producto) => producto.precio <= 30000);
+   
+baratos.forEach((producto)=>{
+    console.log("productos con un valor menor a 30000: " + producto.nombre + " $" + producto.precio);
+})
 
 while (nombreCliente !== "ESC") {
     let textoProductoSeleccionado = "Seleccione un producto\n\n";
-    textoProductoSeleccionado += "(1) Lámpara 1 - $" + lampara1.precio + "\n";
-    textoProductoSeleccionado += "(2) Lámpara 2 - $" + lampara2.precio + "\n";
-    textoProductoSeleccionado += "(3) Maceta1 - $" + maceta1.precio + "\n";
-    textoProductoSeleccionado += "(4) Maceta2 - $" + maceta2.precio + "\n";
+    textoProductoSeleccionado += "(1) Lámpara 1 - $" + productos[0].precio + "\n";
+    textoProductoSeleccionado += "(2) Lámpara 2 - $" + productos[1].precio + "\n";
+    textoProductoSeleccionado += "(3) Maceta1 - $" + productos[2].precio + "\n";
+    textoProductoSeleccionado += "(4) Maceta2 - $" + productos[3].precio + "\n";
 
     let productoSeleccionado = parseInt(prompt(textoProductoSeleccionado));
 
     let precioProducto = calcularPrecio(productoSeleccionado, cuponDescuento);
+
 
     if (precioProducto !== null) {
         alert("Cliente: " + nombreCliente + "\n" +
@@ -59,7 +68,6 @@ while (nombreCliente !== "ESC") {
     if (nombreCliente !== "ESC") {
         ingreseLocalidad = prompt("Ingrese su localidad: ").toUpperCase();
         cuponDescuento = prompt("Ingrese cupón de descuento: (ESC para salir)").toUpperCase();
-
     }
 
 
@@ -69,16 +77,16 @@ function calcularPrecio(productoSeleccionado, cuponDescuento) {
     let precio;
     switch (productoSeleccionado) {
         case 1:
-            precio = lampara1.precio;
+            precio = productos[0].precio;
             break;
         case 2:
-            precio = lampara2.precio;
+            precio = productos[1].precio;
             break;
         case 3:
-            precio = maceta1.precio;
+            precio = productos[2].precio;
             break;
         case 4:
-            precio = maceta2.precio;
+            precio = productos[3].precio;
             break;
         default:
             return null;
@@ -91,7 +99,7 @@ function calcularPrecio(productoSeleccionado, cuponDescuento) {
     return precio;
 }
 
-let precio
+
 
 
 
