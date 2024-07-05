@@ -20,8 +20,8 @@ class Producto {
 
 //-----------------ARRAYS
 const productos = [];
-productos.push(new Producto("Lampara1", 30000));
-productos.push(new Producto("Lampara2", 35000));
+productos.push(new Producto("Lampara1", 25000));
+productos.push(new Producto("Lampara2", 30000));
 productos.push(new Producto("Maceta1", 15000));
 productos.push(new Producto("Maceta2", 10000));
 
