@@ -18,7 +18,6 @@ class Producto {
 }
 
 
-//-----------------ARRAYS
 const productos = [];
 productos.push(new Producto("Lampara1", 25000));
 productos.push(new Producto("Lampara2", 30000));
@@ -37,18 +36,18 @@ for (const producto of arrayProductos) {
         console.log(producto.nombre + " $" + producto.precio);
     });
 
- const baratos = productos.filter((producto) => producto.precio <= 30000);
+ const baratos = productos.filter((producto) => producto.precio <= 25000);
    
 baratos.forEach((producto)=>{
-    console.log("productos con un valor menor a 30000: " + producto.nombre + " $" + producto.precio);
+    console.log("productos con un valor menor a 25000: " + producto.nombre + " $" + producto.precio);
 })
 
 while (nombreCliente !== "ESC") {
     let textoProductoSeleccionado = "Seleccione un producto\n\n";
-    textoProductoSeleccionado += "(1) Lámpara 1 - $" + productos[0].precio + "\n";
-    textoProductoSeleccionado += "(2) Lámpara 2 - $" + productos[1].precio + "\n";
-    textoProductoSeleccionado += "(3) Maceta1 - $" + productos[2].precio + "\n";
-    textoProductoSeleccionado += "(4) Maceta2 - $" + productos[3].precio + "\n";
+    textoProductoSeleccionado += "(1) Lámpara 1 - $" + arrayProductos[0].precio + "\n";
+    textoProductoSeleccionado += "(2) Lámpara 2 - $" + arrayProductos[1].precio + "\n";
+    textoProductoSeleccionado += "(3) Maceta1 - $" + arrayProductos[2].precio + "\n";
+    textoProductoSeleccionado += "(4) Maceta2 - $" + arrayProductos[3].precio + "\n";
 
     let productoSeleccionado = parseInt(prompt(textoProductoSeleccionado));
 
@@ -77,16 +76,16 @@ function calcularPrecio(productoSeleccionado, cuponDescuento) {
     let precio;
     switch (productoSeleccionado) {
         case 1:
-            precio = productos[0].precio;
+            precio = arrayProductos[0].precio;
             break;
         case 2:
-            precio = productos[1].precio;
+            precio = arrayProductos[1].precio;
             break;
         case 3:
-            precio = productos[2].precio;
+            precio = arrayProductos[2].precio;
             break;
         case 4:
-            precio = productos[3].precio;
+            precio = arrayProductos[3].precio;
             break;
         default:
             return null;
