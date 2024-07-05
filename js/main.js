@@ -31,14 +31,14 @@ for (const producto of arrayProductos) {
     producto.sumarIva();
 }
 
- arrayProductos.forEach((producto) => {
-        producto.precio *= 1.25;
-        console.log(producto.nombre + " $" + producto.precio);
-    });
+arrayProductos.forEach((producto) => {
+    producto.precio *= 1.25;
+    console.log(producto.nombre + " $" + producto.precio);
+});
 
- const baratos = productos.filter((producto) => producto.precio <= 25000);
-   
-baratos.forEach((producto)=>{
+const baratos = productos.filter((producto) => producto.precio <= 25000);
+
+baratos.forEach((producto) => {
     console.log("productos con un valor menor a 25000: " + producto.nombre + " $" + producto.precio);
 })
 
@@ -68,8 +68,6 @@ while (nombreCliente !== "ESC") {
         ingreseLocalidad = prompt("Ingrese su localidad: ").toUpperCase();
         cuponDescuento = prompt("Ingrese cupón de descuento: (ESC para salir)").toUpperCase();
     }
-
-
 }
 
 function calcularPrecio(productoSeleccionado, cuponDescuento) {
