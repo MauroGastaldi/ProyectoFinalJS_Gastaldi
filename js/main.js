@@ -1,14 +1,6 @@
-let nombreCliente = prompt("Ingrese su nombre y apellido: (ESC para salir)").toUpperCase();
-let ingreseLocalidad = prompt("Ingrese su localidad: ").toUpperCase();
-let cuponDescuento = prompt("Ingrese cupón de descuento: (ESC para salir)").toUpperCase();
-
-console.log(nombreCliente);
-console.log(ingreseLocalidad);
-console.log(cuponDescuento);
-
-
 class Producto {
-    constructor(nombre, precio) {
+    constructor(id, nombre, precio) {
+        this.id = id;
         this.nombre = nombre;
         this.precio = precio;
     }
@@ -17,12 +9,27 @@ class Producto {
     }
 }
 
-
 const productos = [];
-productos.push(new Producto("Lampara1", 25000));
-productos.push(new Producto("Lampara2", 30000));
-productos.push(new Producto("Maceta1", 15000));
-productos.push(new Producto("Maceta2", 10000));
+productos.push(new Producto("LAMPARA1", "Lampara1", 25000));
+productos.push(new Producto("LAMPARA2", "Lampara2", 30000));
+productos.push(new Producto("MACETA1", "Maceta1", 15000));
+productos.push(new Producto("MACETA2", "Maceta2", 10000));
+
+let productoBuscado = prompt("Ingrese nombre de producto para consultar stock: (ESC para salir)").toUpperCase();
+const buscado = productos.some(producto => producto.id === productoBuscado);
+alert(buscado);
+let nombreCliente = prompt("Ingrese su nombre y apellido: (ESC para salir)").toUpperCase();
+let ingreseLocalidad = prompt("Ingrese su localidad: ").toUpperCase();
+let cuponDescuento = prompt("Ingrese cupón de descuento: (ESC para salir)").toUpperCase();
+
+
+console.log(nombreCliente);
+console.log(ingreseLocalidad);
+console.log(cuponDescuento);
+
+
+
+
 
 
 const arrayProductos = productos.slice();
@@ -36,11 +43,12 @@ arrayProductos.forEach((producto) => {
     console.log(producto.nombre + " $" + producto.precio);
 });
 
-const baratos = productos.filter((producto) => producto.precio <= 25000);
 
+const baratos = arrayProductos.filter((producto) => producto.precio <= 25000);
 baratos.forEach((producto) => {
     console.log("productos con un valor menor a 25000: " + producto.nombre + " $" + producto.precio);
-})
+});
+
 
 while (nombreCliente !== "ESC") {
     let textoProductoSeleccionado = "Seleccione un producto\n\n";
