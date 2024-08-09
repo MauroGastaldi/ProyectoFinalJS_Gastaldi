@@ -5,6 +5,9 @@ const productos = [
     {id:3, nombre:"Maceta1", precio:14990,categoria:"macetas", imagen:"https://i.pinimg.com/564x/46/06/6f/46066feaf34edf43c8fdd3acbfc63238.jpg"},
     {id:4, nombre:"Maceta2", precio:9990,categoria:"macetas", imagen:"https://i.pinimg.com/564x/1f/4d/ae/1f4daeae09166037f3cf52ac855647c1.jpg"},
 ];
+const arrayLamparas = productos.filter((item) => item.categoria.includes('lamparas'));
+const arrayMacetas = productos.filter((item) => item.categoria.includes('macetas'));
+
 
 function agregarProducto(id) { 
     const producto = productos.find(item => item.id == id); 
@@ -17,8 +20,11 @@ function agregarProducto(id) {
 
 function eliminarProducto(id) {
     const carrito = cargarCarritoLS();
-    const carritoActualizado = carrito.filter(item => item.id != id);
-    guardarCarritoLS(carritoActualizado);
+    const index = carrito.findIndex(item => item.id === id);
+    if (index !== -1){
+        carrito.splice(index, 1);
+    }
+    guardarCarritoLS(carrito);
     renderCarrito();
     renderBotonCarrito();
     console.log("El producto #" + id + " se ha eliminado correctamente!");
@@ -79,3 +85,90 @@ function validarCupon() {
     const precioTotalConDescuento = calcularPrecio(carrito, cupon);
     document.getElementById("totalPrecio").innerText = `Total: $${precioTotalConDescuento} ARS`;
 }
+
+
+
+function pedidoRealizado(){
+    const cargarPedido = document.getElementById("contenido");
+     cargarPedido.innerHTML =`<div class="my-5 text-center">
+    <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+    </div>
+    </div>`; 
+    setTimeout(() => {
+         swal({
+        title: "El pedido se realizó con éxito!",
+        icon: "success",
+        button: "Continuar",
+      });
+
+    }, 1000)
+   setTimeout(() => {
+        cargarPedido.innerHTML = `<div class="my-5 text-center h5">Tu pedido se ha realizado con éxito!</div>`; //quedan los productos en carrito, si lo vacío tengo que modificar el main para que no aparezca la iamgen de carrito vacio
+    }, 1000);
+    pedidoExito();
+}
+
+//-----------Sección Contacto
+function validarFormulario() {
+    let campoEmail = document.getElementById("exampleFormControlInput1").value;
+   
+
+    if (campoEmail == "") {
+        Toastify({
+            text: "Complete el Campo Email!",
+            duration: 3000,
+            gravity: "top",
+            position: "right", 
+            style: {
+                color:"black",
+                background: "linear-gradient(to right, white, red)",
+            },
+        }).showToast();
+        return false;
+    }
+}
+
+
+
+
+// Cargar un nuevo Producto a la API Fakestore
+function cargarProducto() {
+    let nombre = document.getElementById("nombre").value;
+    let imagen = document.getElementById("imagen").value;
+    let precio = document.getElementById("precio").value;
+    let categoria = document.getElementById("categoria").value;
+
+    fetch('https://fakestoreapi.com/products',{
+        method:"POST",
+        body:JSON.stringify(
+            {
+                name: nombre,
+                price: precio,
+                image: imagen,
+                category: categoria
+            }
+        ),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(json => {
+        console.log(json);
+        productos.push(json);
+        console.log(productos);        
+        Toastify({
+            text: "Producto cargado correctamente!",
+            className: "info",
+            style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+            }
+        }).showToast();
+    })
+}
+
+document.getElementById("btnFormulario1").addEventListener("click", cargarProducto);
+
+
+

@@ -20,19 +20,19 @@ function renderCarrito() {
         }
         contenidoHTML += `<tr>
        <form class="row g-3" id="form-cupon">
-        <td>  <div class="col-md-7">
-            <label for="cuponDescuento" class="form-label">Ingrese cupón de descuento</label>
-            <input type="text" class="form-control" id="cuponDescuento" value="" required><span> </span>
-            <div class="col-12">
-            <button class="btn btn-dark my-2 rounded-pill" type="button" onclick="validarCupon()">Validar cupón</button>
-            </div>
-        </div>
-        </form>
-       <td colspan="1"></td>
-       <td class="text-center align-middle h5"><span class="text-danger" id="totalPrecio">Total: $${calcularPrecio(carrito)} ARS</span></td>
-      </td>
-      <td class="text-end align-middle"><button class="btn btn-dark btn-lg rounded-pill" onclick="realizarPedido();">Realizar pedido<i class="bi bi-bag mx-2"></i></button></td>
-      
+            <td>  <div class="col-md-7">
+                <label for="cuponDescuento" class="form-label">Ingrese cupón de descuento</label>
+                <input type="text" class="form-control" id="cuponDescuento" value="" required><span> </span>
+                <div class="col-12">
+                <button class="btn btn-dark my-2 rounded-pill" type="button" onclick="validarCupon()">Validar cupón</button>
+                </div>
+             </div>
+        
+                 <td colspan="1"></td>
+                 <td class="text-center align-middle h5"><span class="text-danger" id="totalPrecio">Total: $${calcularPrecio(carrito)} ARS</span></td>
+                <td id="btnCompra" class="text-end align-middle"><button class="btn btn-dark btn-lg rounded-pill" onclick="realizarPedido();">Realizar pedido<i class="bi bi-bag mx-2"></i></button></td>
+            </td>
+         </form>
        </tr>`;
         contenidoHTML += `</tbody>
         </table>`;
@@ -45,6 +45,8 @@ function renderCarrito() {
     }
 
     document.getElementById("contenido").innerHTML = contenidoHTML;
+
+    document.getElementById("btnCompra").addEventListener("click", pedidoRealizado);
 }
 
 

@@ -1,6 +1,5 @@
 function renderProducto() {
     const producto = cargarProductoLS();
-    console.log(producto);
     let htmlImagenProducto = `<img src="${producto.imagen}" class="img-fluid rounded-4" alt=${producto.nombre} />`;
     let htmlDetalleProducto = `<h1 class= "d-flex align-items-center justify-content-center">${producto.nombre}</h1>
     <p class="text-danger fs-3 d-flex align-items-center justify-content-center">$${producto.precio} ARS</p>
