@@ -132,7 +132,7 @@ function validarFormulario() {
 
 
 
-// Cargar un nuevo Producto a la API Fakestore
+// ---------Cargar un nuevo Producto a la API Fakestore
 function cargarProducto() {
     let nombre = document.getElementById("nombre").value;
     let imagen = document.getElementById("imagen").value;
